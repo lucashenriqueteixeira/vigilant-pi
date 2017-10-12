@@ -1,1 +1,6 @@
 interface: en0
+
+admin:
+  port: 80
+  user: admin
+  pass: admin

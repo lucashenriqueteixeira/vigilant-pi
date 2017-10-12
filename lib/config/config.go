@@ -8,9 +8,18 @@ import (
 	yaml "gopkg.in/yaml.v2"
 )
 
+// Current contains the result of the last call to `ReadAndUpdate` method
+var Current Settings
+
 // Settings ...
 type Settings struct {
 	Interface string `yaml:"interface"`
+
+	Admin struct {
+		Port uint   `yaml:"port"`
+		User string `yaml:"user"`
+		Pass string `yaml:"pass"`
+	} `yaml:"admin"`
 }
 
 // Read reads a config file. Default file is config.yml
@@ -35,4 +44,9 @@ func Read() Settings {
 	}
 
 	return settings
+}
+
+// Update read settings and update the Current var with its content
+func Update() {
+	Current = Read()
 }

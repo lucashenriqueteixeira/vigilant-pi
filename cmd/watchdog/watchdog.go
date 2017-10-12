@@ -22,9 +22,8 @@ func Command() cli.Command {
 }
 
 func search() {
-	settings := config.Read()
-	cidrIP := network.GetInterfaceIPv4CIDR(settings.Interface)
-	devices, err := network.ScanOnIPv4WithCIDR(settings.Interface, cidrIP)
+	cidrIP := network.GetInterfaceIPv4CIDR(config.Current.Interface)
+	devices, err := network.ScanOnIPv4WithCIDR(config.Current.Interface, cidrIP)
 
 	if err != nil {
 		log.Fatalf("Error scanning network: %s", err.Error())

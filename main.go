@@ -6,6 +6,7 @@ import (
 
 	"github.com/petersondmg/vigilant-pi/cmd/admin"
 	"github.com/petersondmg/vigilant-pi/cmd/watchdog"
+	"github.com/petersondmg/vigilant-pi/lib/config"
 	"github.com/urfave/cli"
 )
 
@@ -28,6 +29,8 @@ func main() {
 		admin.Command(),
 		watchdog.Command(),
 	}
+
+	config.Update()
 
 	err := app.Run(os.Args)
 	if err != nil {

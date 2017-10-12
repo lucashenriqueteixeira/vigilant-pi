@@ -2,6 +2,12 @@
 
 
 [[projects]]
+  name = "github.com/rakyll/statik"
+  packages = ["fs"]
+  revision = "fd36b3595eb2ec8da4b8153b107f7ea08504899d"
+  version = "v0.1.1"
+
+[[projects]]
   name = "github.com/urfave/cli"
   packages = ["."]
   revision = "cfb38830724cc34fedffe9a2a29fb54fa9169cd1"
@@ -16,6 +22,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "469fc22e445c3e1113f0ecde3d2aa1fe3c2fb728188ec2c50514c781e06878e9"
+  inputs-digest = "0f4e122c774f2d5788a79dc2e3b88bc546508c34efd07e489dc6750f468eab65"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -4,14 +4,14 @@ dev-env:
 static:
 	statik -src=./public
 
-build: 
-	go build -o vigilant
+build: static 
+	go build -o vigilantpi
 
 run-%: build
-	sudo ./vigilant $*
+	sudo ./vigilantpi $*
 
-arm-build:
-	GOOS=linux GOARCH=arm GOARM=5 go build
+arm-build: static
+	GOOS=linux GOARCH=arm GOARM=5 go build -o vigilantpi
 
 build-and-ship: arm-build
-	scp camera pi@raspberrypi.local:~/camera
+	scp vigilantpi pi@raspberrypi.local:~/.

@@ -11,7 +11,7 @@ import (
 
 	"github.com/petersondmg/vigilant-pi/lib/config"
 	libhttp "github.com/petersondmg/vigilant-pi/lib/http"
-	// import embeded static files
+	// import embedded static files
 	_ "github.com/petersondmg/vigilant-pi/statik"
 )
 

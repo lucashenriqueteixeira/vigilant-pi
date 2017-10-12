@@ -1,23 +1,36 @@
 package main
 
 import (
-	"fmt"
 	"log"
+	"os"
 
-	"github.com/petersondmg/vigilant-pi/lib/config"
-	"github.com/petersondmg/vigilant-pi/lib/network"
+	"github.com/petersondmg/vigilant-pi/cmd/admin"
+	"github.com/petersondmg/vigilant-pi/cmd/watchdog"
+	"github.com/urfave/cli"
+)
+
+const (
+	// Name ...
+	Name = "Vigilant PI"
+	// Usage ...
+	Usage = "Record videos from survillence cameras and upload them to the cloud"
+	// Version ...
+	Version = "0.0.1"
 )
 
 func main() {
-	settings := config.Read()
-	cidrIP := network.GetInterfaceIPv4CIDR(settings.Interface)
-	devices, err := network.ScanOnIPv4WithCIDR(settings.Interface, cidrIP)
+	app := cli.NewApp()
+	app.Name = Name
+	app.Usage = Usage
+	app.Version = Version
 
-	if err != nil {
-		log.Fatalf("Error scanning network: %s", err.Error())
+	app.Commands = []cli.Command{
+		admin.Command(),
+		watchdog.Command(),
 	}
 
-	for _, device := range devices {
-		fmt.Printf("%s - %s - %s\n", device.IP, device.MAC, device.Manufacturer)
+	err := app.Run(os.Args)
+	if err != nil {
+		log.Fatal(err.Error())
 	}
 }
